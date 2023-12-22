@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Meta tags and styles -->
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="style.css" />
+    <title>TO-DO-LIST</title>
+    <style>
+      /* Styling for the left and right sections */
+      #left {
+        background-color: aquamarine;
+        width: 45%;
+        height: 100vh;
+        float: left;
+        padding: 10px;
+      }
+      #right {
+        background-color: rgb(127, 129, 255);
+        width: 45%;
+        height: 100vh;
+        float: right;
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div>
+      <!-- Title -->
+      <h1>Create Your Tasks</h1>
+    </div>
+
+    <div id="left">
+      <!-- Input field and Add button -->
+      <input
+        type="text"
+        id="inputId"
+        placeholder="Enter Your ......"
+        autofocus
+        required
+        class="inputClass"
+      />
+      <button onclick="taskAndBtnAdded()">Add</button>
+    </div>
+    <div id="right">
+      <!-- Output field -->
+      <div id="outputId" class="outputClass"></div>
+    </div>
+
+    <!-- Script for JavaScript functionality -->
+    <script>
+      const taskAndBtnAdded = () => {
+        // Get the value from the input field
+        const inputId = document.getElementById("inputId");
+        const inputValue = inputId.value;
+        console.log("Input: " + inputValue); //debugging
+
+        // Display the value in the output field
+        const outputId = document.getElementById("outputId");
+        const outputValue = (outputId.innerHTML = inputValue);
+        console.log("Output: " + outputValue); //debugging
+
+        const editBtn = document.createElement("button");
+        editBtn.id = "editId";
+        const editText = document.createTextNode("Edit Task");
+        editBtn.appendChild(editText);
+        outputId.appendChild(editBtn);
+
+        editBtn.addEventListener("click", editTaskBtn);
+      };
+
+      const editTaskBtn = () => {
+        const outputId = document.getElementById("outputId");
+
+        const updateBtn = document.createElement("button");
+        updateBtn.id = "updateBtnId";
+        updateBtn.className = "updateBtnClass";
+        const updateBtnText = document.createTextNode("Update");
+        updateBtn.appendChild(updateBtnText);
+        outputId.appendChild(updateBtn);
+
+        const removeBtn = document.createElement("button");
+        removeBtn.id = "removeBtnId";
+        const removeBtnText = document.createTextNode("Remove");
+        removeBtn.appendChild(removeBtnText);
+        outputId.appendChild(removeBtn);
+        removeBtn.id = "removeBtnId";
+        removeBtn.className = "removeBtnClass";
+
+        const edit = (document.getElementById("editId").innerHTML = "");
+
+        // Event listener for Update button
+        updateBtn.addEventListener("click", function () {
+          outputId.innerText = "Your editable text goes here"; // Set the initial text, you can modify this as needed
+          outputId.contentEditable = true; // Enable content to be editable
+        });
+
+        removeBtn.addEventListener("click", function () {
+          outputId.innerHTML = "";
+        });
+      };
+    </script>
+  </body>
+</html>

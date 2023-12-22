@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Calculator</title>
+  </head>
+  <body>
+    <input type="text" id="inputField" readonly />
+    <br />
+    <button id="btn1" onclick="onNumberClick('1')">1</button>
+    <button id="btn2" onclick="onNumberClick('2')">2</button>
+    <button id="btn3" onclick="onNumberClick('3')">3</button>
+    <br />
+    <button id="btn4" onclick="onNumberClick('4')">4</button>
+    <button id="btn5" onclick="onNumberClick('5')">5</button>
+    <button id="btn6" onclick="onNumberClick('6')">6</button>
+    <br />
+    <button id="btn7" onclick="onNumberClick('7')">7</button>
+    <button id="btn8" onclick="onNumberClick('8')">8</button>
+    <button id="btn9" onclick="onNumberClick('9')">9</button>
+    <br />
+    <button id="btn0" onclick="onNumberClick('0')">0</button>
+    <br />
+    <button id="addBtn" onclick="onOperationClick('+')">+</button>
+    <button id="subtractBtn" onclick="onOperationClick('-')">-</button>
+    <button id="multiplyBtn" onclick="onOperationClick('*')">*</button>
+    <button id="divideBtn" onclick="onOperationClick('/')">/</button>
+    <button id="equalsBtn" onclick="calculate()">=</button>
+    <button id="clearBtn" onclick="clearInput()">C</button>
+  </body>
+  <script>
+    let currentInput = ""; // Initialize current input variable
+
+    // Function to handle number clicks
+    function onNumberClick(number) {
+      currentInput += number; // Append the clicked number to the current input
+      updateInputField(); // Update the input field
+    }
+
+    // Function to handle operation clicks
+    function onOperationClick(operation) {
+      currentInput += operation; // Append the clicked operation to the current input
+      updateInputField(); // Update the input field
+    }
+
+    // Function to update the input field
+    function updateInputField() {
+      document.getElementById("inputField").value = currentInput; // Set the input field value to the current input
+    }
+
+    // Function to perform calculation when equals button is clicked
+    function calculate() {
+      try {
+        let result = eval(currentInput); // Evaluate the current input as a JavaScript expression
+        document.getElementById("inputField").value = result; // Display the result
+        currentInput = result.toString(); // Store the result as the current input for further operations
+      } catch (error) {
+        document.getElementById("inputField").value = "Error"; // Display "Error" for invalid expressions
+        currentInput = ""; // Reset current input on error
+      }
+    }
+
+    // Function to clear the input field
+    function clearInput() {
+      currentInput = ""; // Reset current input
+      updateInputField(); // Update the input field
+    }
+  </script>
+</html>
