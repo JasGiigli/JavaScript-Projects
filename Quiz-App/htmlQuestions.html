@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HTML Quiz</title>
+  </head>
+  <body>
+    <h2>HTML stands for ______________</h2>
+    <form id="htmlForm">
+      <label>
+        <input
+          type="checkbox"
+          name="html1"
+          value="Hyper Text Markup Language"
+          onclick="clearOthers('html1', this)"
+        />
+        Hyper Text Markup Language
+      </label>
+      <br />
+      <label>
+        <input
+          type="checkbox"
+          name="html1"
+          value="Happy Text Markup Language"
+          onclick="clearOthers('html1', this)"
+        />
+        Happy Text Markup Languagee
+      </label>
+      <br />
+      <label>
+        <input
+          type="checkbox"
+          name="html1"
+          value="Hyper Text Mood Language"
+          onclick="clearOthers('html1', this)"
+        />
+        Hyper Text Mood Languagee
+      </label>
+      <br />
+      <label>
+        <input
+          type="checkbox"
+          name="html1"
+          value="Hyper Tool Markup Large"
+          onclick="clearOthers('html1', this)"
+        />
+        Hyper Tool Markup Large
+      </label>
+      <br />
+      <!-- Rest of your questions -->
+      <h2>HTML5 was released in which year?</h2>
+      <label>
+        <input
+          type="checkbox"
+          name="html2"
+          value="1995"
+          onclick="clearOthers('html2', this)"
+        />
+        1995
+      </label>
+      <br />
+      <label>
+        <input
+          type="checkbox"
+          name="html2"
+          value="2023"
+          onclick="clearOthers('html2', this)"
+        />
+        2023
+      </label>
+      <br />
+      <label>
+        <input
+          type="checkbox"
+          name="html2"
+          value="2014"
+          onclick="clearOthers('html2', this)"
+        />
+        2014
+      </label>
+      <br />
+      <label>
+        <input
+          type="checkbox"
+          name="html2"
+          value="2005"
+          onclick="clearOthers('html2', this)"
+        />
+        2005
+      </label>
+      <br />
+      <!-- Additional questions -->
+      <!-- Add your additional questions here -->
+      <!-- New Question -->
+      <h2>What does CSS stand for?</h2>
+      <label>
+        <input
+          type="checkbox"
+          name="html3"
+          value="Cascading Style Sheets"
+          onclick="clearOthers('html3', this)"
+        />
+        Cascading Style Sheets
+      </label>
+      <br />
+      <label>
+        <input
+          type="checkbox"
+          name="html3"
+          value="Center services Sheet"
+          onclick="clearOthers('html3', this)"
+        />
+        Center services Sheet
+      </label>
+      <br />
+      <label>
+        <input
+          type="checkbox"
+          name="html3"
+          value="Cyber Services System"
+          onclick="clearOthers('html3', this)"
+        />
+        Cyber Services System
+      </label>
+      <br />
+      <label>
+        <input
+          type="checkbox"
+          name="html3"
+          value="Cat Style Sheets"
+          onclick="clearOthers('html3', this)"
+        />
+        Cat Style Sheets
+      </label>
+      <br />
+      <!-- Add more questions following the same structure -->
+      <h2>To add JavaScript which tag is used for?</h2>
+      <label>
+        <input
+          type="checkbox"
+          name="html4"
+          value="style"
+          onclick="clearOthers('html4', this)"
+        />
+        style
+      </label>
+      <br />
+      <label>
+        <input
+          type="checkbox"
+          name="html4"
+          value="table"
+          onclick="clearOthers('html4', this)"
+        />
+        table
+      </label>
+      <br />
+      <label>
+        <input
+          type="checkbox"
+          name="html4"
+          value="section"
+          onclick="clearOthers('html4', this)"
+        />
+        section
+      </label>
+      <br />
+      <label>
+        <input
+          type="checkbox"
+          name="html4"
+          value="script"
+          onclick="clearOthers('html4', this)"
+        />
+        script
+      </label>
+      <br />
+
+      <button id="submitButton" onclick="calculateScore()" disabled>
+        Submit
+      </button>
+    </form>
+
+    <script>
+      function clearOthers(question, clickedCheckbox) {
+        const checkboxes = document.getElementsByName(question);
+        checkboxes.forEach((checkbox) => {
+          if (checkbox !== clickedCheckbox) {
+            checkbox.checked = false;
+          }
+        });
+
+        const anyChecked = [...checkboxes].some((checkbox) => checkbox.checked);
+        const submitButton = document.getElementById("submitButton");
+        submitButton.disabled = !anyChecked;
+      }
+
+      function calculateScore() {
+        const totalQuestions = 4; // Total number of questions
+        const marksPerQuestion = 5;
+        let obtainedMarks = 0;
+
+        for (let i = 1; i <= totalQuestions; i++) {
+          const question = `html${i}`;
+          const checkboxes = document.getElementsByName(question);
+          let correctAnswer = false;
+
+          const correctAnswers = {
+            html1: ["Hyper Text Markup Language"],
+            html2: ["2014"],
+            html3: ["Cascading Style Sheets"],
+            html4: ["script"], // Answer for CSS question
+          };
+
+          checkboxes.forEach((checkbox) => {
+            if (
+              checkbox.checked &&
+              correctAnswers[question].includes(checkbox.value)
+            ) {
+              correctAnswer = true;
+            }
+          });
+
+          if (correctAnswer) {
+            obtainedMarks += marksPerQuestion;
+          }
+        }
+
+        const totalMarks = totalQuestions * marksPerQuestion;
+        const result = `You obtained ${obtainedMarks} out of ${totalMarks} marks.`;
+        alert(result);
+      }
+    </script>
+  </body>
+</html>

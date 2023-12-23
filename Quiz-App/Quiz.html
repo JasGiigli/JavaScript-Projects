@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz App</title>
+    <style></style>
+  </head>
+  <body>
+    <div id="mainPage">
+      <button id="welcome" onclick="clearPage()">Start Quiz</button>
+    </div>
+    <div id="selectSubject"></div>
+    <script>
+      function clearPage() {
+        document.getElementById("mainPage").innerHTML = "";
+
+        const newChild = document.createElement("button");
+        newChild.id = "htmlBtn";
+        const newChildText = document.createTextNode("Start HTML Quiz");
+        newChild.appendChild(newChildText);
+
+        document.getElementById("selectSubject").appendChild(newChild);
+
+        document
+          .getElementById("htmlBtn")
+          .addEventListener("click", function () {
+            htmlQuizQuestions();
+          });
+      }
+      function htmlQuizQuestions() {
+        // Redirect to a new page
+        window.location.href = "htmlQuestions.html";
+      }
+    </script>
+  </body>
+</html>
